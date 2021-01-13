@@ -220,28 +220,11 @@ function update() {
             console.log(gameobjects[i].name + " at X: " + gameobjects[i].x + "  at Y: "  + gameobjects[i].y);
         }
 
-       // if (gamerInput.action === "Space") 
-       // {
-       //     gameobjects[2].x += 5;
-       //     console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
-       // } 
-
-        // event = keyup or keydown
-        document.addEventListener('keyup', event => 
+        if (gamerInput.action === "Space") 
         {
-             if (event.code === 'Space') { 
-                gameobjects[2].x += 5;
-                console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
-                console.log('Space pressed') 
-                 }
-        })
-
-
-
-
-
-
-
+            gameobjects[2].x += 5;
+            console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
+        } 
     }
 
         collision();
