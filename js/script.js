@@ -110,8 +110,8 @@ gameobjects[1].x =1600;
 gameobjects[1].y =400;
 gameobjects[1].health = 100;
 
-gameobjects[2].x = gameobjects[0].x;
-gameobjects[2].y = gameobjects[0].y;
+gameobjects[2].x = gameobjects[0].x; // projectile 
+gameobjects[2].y = gameobjects[0].y; // projectile
 
 
 // Process keyboard input event
@@ -184,6 +184,7 @@ function animate() {
         {
         context.drawImage(gameobjects[1].img, (gameobjects[1].img.width / 7) * currentFrame, 0, 90, 90, gameobjects[1].x,  gameobjects[1].y, 200, 200);
         }
+
         context.drawImage(gameobjects[2].img, gameobjects[2].x,  gameobjects[2].y, 40, 40); 
     }
 }
@@ -219,11 +220,28 @@ function update() {
             console.log(gameobjects[i].name + " at X: " + gameobjects[i].x + "  at Y: "  + gameobjects[i].y);
         }
 
-        if (gamerInput.action === "Space") 
+       // if (gamerInput.action === "Space") 
+       // {
+       //     gameobjects[2].x += 5;
+       //     console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
+       // } 
+
+        // event = keyup or keydown
+        document.addEventListener('keyup', event => 
         {
-            gameobjects[2].x += 5;
-            console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
-        } 
+             if (event.code === 'Space') { 
+                gameobjects[2].x += 5;
+                console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
+                console.log('Space pressed') 
+                 }
+        })
+
+
+
+
+
+
+
     }
 
         collision();
