@@ -1,77 +1,37 @@
-﻿﻿
-<!doctype html>
-
-<html lang="en">
-
+﻿<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>GameLoop Example</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="HTML5 GameLoop Template">
-	<meta name="author" content="UI Programming">
-	<meta charset="utf-8">
-	<!--StyleSheet-->
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/push.css">
-	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
-
-
+	<title>Test Form</title>
 </head>
-
 <body>
 
-	<canvas tabindex="1" id="game" width="1900" height="700" style="border: black 1px solid;">
-		Oops! looks like your browser does not support canvas tag
-	</canvas>
-	<div style = "position:absolute; left:365px; top:735px; background-color:yellow;">
-		Background switch.
-	 </div>
+	<form action="https://davidjalisevs.github.io/GameLoop.html" method="GET" target="_blank">
 
-	<table>
-		<tbody>
-			<tr>
-				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickUp()" class="button yellow round">Y</button></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><button onmousedown="buttonOnClickLeft()" class="button blue round">X</button></td>
-				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickRight()" class="button red round">B</button></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickDown()" class="button green round">A</button></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			  </tr>
-			  <tr>
-				<td colspan="3" align="center">
-				  <div class="custom-select" style="width:200px;">
-					<select id="equipment" onchange="backgroundChange()">
-					</select>
-				  </div>
-				</td>
-			  </tr>
-			  <tr>
-				<td colspan="3" align="center">
-				  <label class="switch">
-					<input id="active" onclick="backgroundChange()" type="checkbox">
-					<span class="toggle"></span>
-				  </label>
-				</td>
-			  </tr>
-			</tbody>
-		  </table>
+		<input type="text" name="q" value="Game">
 
+		<input type="text" name="username">
+
+		<input type="password" name="password">
+		<br>
+
+		<input type="radio" name="enemy" value="npc">NPC<br>
+		<input type="radio" name="enemy" value="boss" checked>Boss
+		<br>
+
+		<input type="hidden" name="wallet" value="phil">
+
+		<select name="enemy_color">
+
+			<option value="Red">red</option>
+			<option value="Green">green</option>
+			<option value="BLUE">blue</option>
+		</select>
+		<br>
+
+		<button type="reset">Reset</button>
+		<button type="submit">Send me to the game</button>
+
+	</form>
 
 </body>
-
-<!--JavaScript File-->
-<script src="./js/script.js"></script>
-
 </html>
