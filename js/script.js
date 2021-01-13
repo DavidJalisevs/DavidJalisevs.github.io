@@ -102,11 +102,11 @@ var projectile = new GameObject("Projectile",projectileSprite,100);
 var gameobjects = [player, enemy, projectile];
 
 
-gameobjects[0].x =100;
+gameobjects[0].x =100;//player
 gameobjects[0].y =400;
 gameobjects[0].health = 100;
 
-gameobjects[1].x =1600;
+gameobjects[1].x =1600;//npc
 gameobjects[1].y =400;
 gameobjects[1].health = 100;
 
@@ -230,6 +230,32 @@ function update() {
         collision();
         drawHealthbar();
         backgroundChange();
+        
+  if(gameobjects[0].x > gameobjects[1].x)
+  {
+    gameobjects[1].x +=1;
+  }
+
+
+  if(gameobjects[0].x < gameobjects[1].x)
+  {
+    gameobjects[1].x -=1;
+  }
+
+
+  if(gameobjects[0].y > gameobjects[1].y)
+  {
+    gameobjects[1].y +=1;
+  }
+
+
+  if(gameobjects[0].y < gameobjects[1].y)
+  {
+    gameobjects[1].y -=1;
+  }
+
+
+
 }
 
 
@@ -275,10 +301,11 @@ function collision()
 
     if(gameobjects[1].health >=1)
     {
-        if(collisionX < 60 && collisionY <100)
+        if(gameobjects[0].x === gameobjects[1].x && gameobjects[0].y === gameobjects[1].y)
+        //if(collisionX < 60 && collisionY <100)
         {
 
-                if(gameobjects[1].health >=1) // here you kill NPC
+            if(gameobjects[1].health >=1) // here you kill NPC
             {
                 gameobjects[1].health = gameobjects[1].health - 1;
                 console.log("MINUS 1 HP NPC");
