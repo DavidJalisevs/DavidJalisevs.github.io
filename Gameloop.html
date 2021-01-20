@@ -26,18 +26,6 @@
 	<div style = "position:absolute; left:365px; top:735px; background-color:yellow;">
 		Background switch.
 	 </div>
-
-	 <button onclick="splitFunction()">Split String</button>
-
-	 <p id="demo"></p>
- 
-	 <script>
- 
- 
-	 </script>
- 
-
-
 	<table>
 		<tbody>
 			<tr>
@@ -78,6 +66,31 @@
 			  </tr>
 			</tbody>
 		  </table>
+
+		  <script>
+			function onPageLoad() {
+			var href = window.location.href;
+				alert(href);
+			   
+				var protocol = window.location.protocol;
+				alert(protocol);
+			   
+				var host = window.location.host;
+				alert(host);
+			   
+			   
+				var pathname = window.location.pathname;
+				alert(pathname);
+			   
+				var search = window.location.search;
+				alert(search);
+				splitFunction();
+
+			}
+			</script>
+
+
+
 
 
 </body>
