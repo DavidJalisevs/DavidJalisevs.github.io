@@ -18,7 +18,6 @@
 
 
 		<input type="text" name="q" value="Game">
-
 		<input type="text" name="username">
 
 		<input type="password" name="password">
@@ -31,12 +30,26 @@
 
 		<select name="enemy_color">
 
-			<option value="Red">red</option>
+			<option value="Green">Green</option>
 		</select>
 		<br>
 
 		<button type="reset">Reset</button>
 		<button type="submit">Send me to the game</button>
+
+		<button onclick="splitFunction()">Split String</button>
+
+<p id="demo"></p>
+
+<script>
+function splitFunction() {
+  var str = "The gamer tag is = username";
+  var username = " ";
+  var result = str.split("="); // Splits string based on =
+  alert(result[0]);
+  alert(result[1]);
+}
+</script>
 
 	</form>
 
