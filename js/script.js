@@ -18,6 +18,7 @@ function GameObject(name, img, health) {
     
 }
 
+
 function sound(src) {
   this.sound = document.createElement("audio");
   this.sound.src = src;
@@ -230,7 +231,7 @@ function update() {
         collision();
         drawHealthbar();
         backgroundChange();
-        
+
   if(gameobjects[0].x > gameobjects[1].x)
   {
     gameobjects[1].x +=1;
@@ -253,9 +254,6 @@ function update() {
   {
     gameobjects[1].y -=1;
   }
-
-
-
 }
 
 
@@ -289,7 +287,9 @@ function draw() {
         if (gameobjects[i].health > 0) 
         {
          console.log("Image :" + gameobjects[i].img);
+
          animate();
+
         }
     }
 }
@@ -318,32 +318,47 @@ function collision()
     }
 }
 
+// Update the player score
+function updateScore() 
+{
+    var current_score = localStorage.getItem('score');
+  
+    if (isNaN(current_score)) {
+      localStorage.setItem('score', 0);
+      document.getElementById("SCORE").innerHTML = " [ " + current_score + " ] ";
+    } else {
+      localStorage.setItem('score', parseInt(current_score) + 1);
+      document.getElementById("SCORE").innerHTML = " [ " + current_score + " ] ";
+    }
+}
 
 
 
 
  function buttonOnClickRight()
- {
+{
                 // gamerInput = new GamerInput("Right");
    gameobjects[0].x +=100;
- }
+}
 
- function buttonOnClickUp()
- {
-    gameobjects[0].y -= 100;
- }
+function buttonOnClickUp()
+{
+gameobjects[0].y -= 100;
 
- function buttonOnClickLeft()
- {
-    gameobjects[0].x -= 100;
- }
+}
 
- function buttonOnClickDown()
- {
-    gameobjects[0].y += 100;
- }
+function buttonOnClickLeft()
+{
+gameobjects[0].x -= 100;
+}
 
-function gameloop() {
+function buttonOnClickDown()
+{
+gameobjects[0].y += 100;
+}
+
+function gameloop() 
+{
     update();
     draw();
     window.requestAnimationFrame(gameloop);

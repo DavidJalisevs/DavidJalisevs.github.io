@@ -26,6 +26,10 @@
 	<div style = "position:absolute; left:365px; top:735px; background-color:yellow;">
 		Background switch.
 	 </div>
+	 <div style = "position:absolute; left:295px; top:805px; background-color:yellow;">
+		Score Update.
+	 </div>
+
 	<table>
 		<tbody>
 			<tr>
@@ -67,6 +71,40 @@
 			</tbody>
 		  </table>
 
+		</tr>
+		<tr>
+		</tr>
+		  <td colspan="6" align="center">
+			<div class="custom-select" style="width:200px;">
+			  <select id="equipment" onchange="updateScore()">
+			  </select>
+			</div>
+		  </td>
+		</tr>
+		<tr>
+		  <td colspan="6" align="center">
+			<label class="switch">
+			  <input id="active" onclick="updateScore()" type="checkbox">
+			  <span class="toggle"></span>
+			</label>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		  
 		  <script>
 			function onPageLoad() {
 			var href = window.location.href;
