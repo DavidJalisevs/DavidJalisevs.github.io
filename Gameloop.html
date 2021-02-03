@@ -19,7 +19,6 @@
 </head>
 
 <body>
-	<h1 id="SCORE" onload="updateScore()"></h1></br>
 
 	<canvas tabindex="1" id="game" width="1900" height="700" style="border: black 1px solid;">
 		Oops! looks like your browser does not support canvas tag
@@ -27,7 +26,7 @@
 	<div style = "position:absolute; left:365px; top:735px; background-color:yellow;">
 		Background switch.
 	 </div>
-	 <div style = "position:absolute; left:295px; top:805px; background-color:yellow;">
+	 <div style = "position:absolute; left:550px; top:735px; background-color:yellow;">
 		Score Update.
 	 </div>
 
@@ -54,35 +53,15 @@
 				<td>&nbsp;</td>
 			  </tr>
 			  <tr>
-				<td colspan="3" align="center">
-				  <div class="custom-select" style="width:200px;">
-					<select id="equipment" onchange="backgroundChange()">
-					</select>
-				  </div>
-				</td>
-			  </tr>
-			  <tr>
+		
+			
 				<td colspan="3" align="center">
 				  <label class="switch">
 					<input id="active" onclick="backgroundChange()" type="checkbox">
 					<span class="toggle"></span>
 				  </label>
-				</td>
-			  </tr>
-			</tbody>
-		  </table>
-
-		</tr>
-		<tr>
-		</tr>
-		  <td colspan="6" align="center">
-			<div class="custom-select" style="width:200px;">
-			  <select id="equipment" onchange="updateScore()">
-			  </select>
-			</div>
-		  </td>
-		</tr>
-		<tr>
+		
+			
 		  <td colspan="6" align="center">
 			<label class="switch">
 			  <input id="active" onclick="updateScore()" type="checkbox">
@@ -116,6 +95,7 @@
 			</script>
 
 
+	<h1 id="SCORE" onload="updateScore()"></h1></br>
 
 
 

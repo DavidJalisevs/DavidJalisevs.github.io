@@ -55,10 +55,11 @@ function drawHealthbar() {
     {
         context.fillStyle = "#FF0000";
     }
+
+  
+
     var fillVal = Math.min(Math.max(val / max, 0), 1);
     context.fillRect(gameobjects[1].x + 50,gameobjects[1].y + 210, fillVal * width, height);
-
-    
   }
 
 
@@ -296,25 +297,36 @@ function draw() {
 
 function collision()
 {
-    var collisionX = gameobjects[1].x - gameobjects[0].x;
-    var collisionY = gameobjects[1].y - gameobjects[0].y;
-
-    if(gameobjects[1].health >=1)
+    if(gameobjects[1].health > 0 )
     {
-        if(gameobjects[0].x === gameobjects[1].x && gameobjects[0].y === gameobjects[1].y)
-        //if(collisionX < 60 && collisionY <100)
+     
+        var collisionX = gameobjects[1].x - gameobjects[0].x;
+        var collisionY = gameobjects[1].y - gameobjects[0].y;
+
+        if(gameobjects[1].health >=1)
         {
-
-            if(gameobjects[1].health >=1) // here you kill NPC
+            if(gameobjects[0].x === gameobjects[1].x && gameobjects[0].y === gameobjects[1].y)
+            //if(collisionX < 60 && collisionY <100)
             {
-                gameobjects[1].health = gameobjects[1].health - 1;
-                console.log("MINUS 1 HP NPC");
-                attackSound.volume = 0.1;
-                attackSound.play();
-            }
 
-            console.log("collided");
+                if(gameobjects[1].health >=1) // here you kill NPC
+                {
+                    gameobjects[1].health = gameobjects[1].health - 1;
+                    console.log("MINUS 1 HP NPC");
+                    attackSound.volume = 0.1;
+                    attackSound.play();
+                    updateScore();
+                }
+            
+
+                console.log("collided");
+            }
         }
+    }
+    else
+    {
+        gameobjects[1].x =16000;//npc
+        gameobjects[1].y =4000;
     }
 }
 
@@ -322,7 +334,7 @@ function collision()
 function updateScore() 
 {
     var current_score = localStorage.getItem('score');
-  
+
     if (isNaN(current_score)) {
       localStorage.setItem('score', 0);
       document.getElementById("SCORE").innerHTML = " [ " + current_score + " ] ";
