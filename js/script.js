@@ -18,6 +18,69 @@ function GameObject(name, img, health) {
     
 }
 
+function onPageLoad() {
+    // Using JSON and Local Storage for
+    // GameState Management
+    var gameObjects = {
+      'pawn': 1,
+      'worker': 2,
+      'boss': 3
+    };
+  
+    // Game objects as JSON
+    localStorage.setItem('gameObjects', JSON.stringify(gameObjects));
+  
+    // Retrieve Games object as from storage
+    var npcObjects = localStorage.getItem('gameObjects');
+  
+    console.log('npcObjects: ', JSON.parse(npcObjects));
+  
+    // Reading Level Information from a file
+    var readJSONFromURL = function (url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'json';
+  
+      xhr.onload = function () {
+        var status = xhr.status;
+        if (status == 200) {
+          callback(null, xhr.response);
+        } else {
+          callback(status);
+        }
+      };
+  
+      xhr.send();
+    };
+  
+    readJSONFromURL('./data/level.json', function (err, data) {
+      if (err != null) {
+        console.error(err);
+      } else {
+        var text = data["Pawns"];
+        console.log(text);
+        var text = data["Grunts"];
+        console.log(text);
+        var text = data["Boss"];
+        console.log(text);
+      }
+    });
+  
+    // Reading File from a Server
+  
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(this.responseText);
+        document.getElementById("NPC").innerHTML = data[0];
+      }
+    };
+    xmlhttp.open("GET", "./data/level.json", true);
+    xmlhttp.send();  
+    updateScore();
+  }
+  
+
 
 function sound(src) {
   this.sound = document.createElement("audio");
@@ -55,8 +118,6 @@ function drawHealthbar() {
     {
         context.fillStyle = "#FF0000";
     }
-
-  
 
     var fillVal = Math.min(Math.max(val / max, 0), 1);
     context.fillRect(gameobjects[1].x + 50,gameobjects[1].y + 210, fillVal * width, height);
@@ -228,7 +289,6 @@ function update() {
             console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
         } 
     }
-
         collision();
         drawHealthbar();
         backgroundChange();
@@ -270,7 +330,6 @@ function backgroundChange()
     else 
     {
         context.drawImage(backGround, 0,  0, 1920, 1200);
-
     } 
 }
 
