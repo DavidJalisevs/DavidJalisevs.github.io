@@ -2,8 +2,8 @@ var cacheName = 'davidJal-pwa';
 var filesToCache = [
   '/',
   '/index.html',
+  '/Gameloop.html',
   '/css/push.css',
-  '/css/style.css',
   '/js/script.js'
 ];
 
