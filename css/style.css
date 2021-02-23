@@ -5,9 +5,9 @@ img{
 .button {
     background-color: #000000;
     border: none;
-    padding: 30px;
+    padding: 48px;
     text-align: center;
-    font-size: 28px;
+    font-size: 38px;
 }
 
     .button:hover {
