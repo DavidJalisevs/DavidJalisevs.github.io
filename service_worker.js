@@ -4,8 +4,7 @@ var filesToCache = [
   '/index.html',
   '/css/push.css',
   '/css/style.css',
-  '/js/script.js',
-  '/Gameloop.html'
+  '/js/script.js'
 ];
 
 /* Cache contents when Offline See Cache */
