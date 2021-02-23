@@ -8,7 +8,9 @@
 var canvas = document.getElementById("game");
 var context = canvas.getContext("2d");
 var attackSound;
-
+var textHumanHP = 0;
+var textSnakeHP;
+var textBottleHP;
 function GameObject(name, img, health) {
     this.name = name;
     this.img = img;
@@ -21,50 +23,19 @@ function GameObject(name, img, health) {
 function onPageLoad() {
     // Using JSON and Local Storage for
     // GameState Management
-    var gameObjects = {
-      'pawn': 1,
-      'worker': 2,
-      'boss': 3
-    };
-  
-    // Game objects as JSON
-    localStorage.setItem('gameObjects', JSON.stringify(gameObjects));
-  
-    // Retrieve Games object as from storage
-    var npcObjects = localStorage.getItem('gameObjects');
-  
-    console.log('npcObjects: ', JSON.parse(npcObjects));
-  
-    // Reading Level Information from a file
-    var readJSONFromURL = function (url, callback) {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.responseType = 'json';
-  
-      xhr.onload = function () {
-        var status = xhr.status;
-        if (status == 200) {
-          callback(null, xhr.response);
-        } else {
-          callback(status);
-        }
-      };
-  
-      xhr.send();
-    };
-  
-    readJSONFromURL('./data/level.json', function (err, data) {
-      if (err != null) {
-        console.error(err);
-      } else {
-        var text = data["Pawns"];
-        console.log(text);
-        var text = data["Grunts"];
-        console.log(text);
-        var text = data["Boss"];
-        console.log(text);
-      }
-    });
+
+  //  readJSONFromURL('./data/level.json', function (err, data) {
+    //  if (err != null) {
+    //    console.error(err);
+    //  } else {
+       // textSnakeHP = data.snakeHP;
+      //  console.log(textSnakeHP);
+      //  textHumanHP = data.humanHP;
+      //  console.log(textHumanHP);
+     //   textBottleHP = data.Bottle;
+      //  console.log(textBottleHP);
+    //  }
+  //  });
   
     // Reading File from a Server
   
@@ -72,7 +43,11 @@ function onPageLoad() {
     xmlhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);
-        document.getElementById("NPC").innerHTML = data[0];
+        //document.getElementById("NPC").innerHTML = data[0];
+        textSnakeHP = data.snakeHP;
+        console.log(textSnakeHP);
+        textHumanHP = data.humanHP;
+        console.log(textHumanHP);
       }
     };
     xmlhttp.open("GET", "./data/level.json", true);
@@ -167,7 +142,7 @@ var gameobjects = [player, enemy, projectile];
 
 gameobjects[0].x =100;//player
 gameobjects[0].y =400;
-gameobjects[0].health = 100;
+gameobjects[0].health = textSnakeHP;
 
 gameobjects[1].x =1600;//npc
 gameobjects[1].y =400;
@@ -349,7 +324,6 @@ function draw() {
          console.log("Image :" + gameobjects[i].img);
 
          animate();
-
         }
     }
 }

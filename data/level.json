@@ -1,5 +1,4 @@
-{ 
-    "Pawns": 15, 
-    "Grunts":13, 
-    "Boss": 1 
+{
+    "snakeHP": 100, 
+    "humanHP": 100
 }
