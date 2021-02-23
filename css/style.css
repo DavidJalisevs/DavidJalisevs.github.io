@@ -1,13 +1,13 @@
 img{
-    width: 130%;
+    width: 100%;
 }
 
 .button {
     background-color: #000000;
     border: none;
-    padding: 48px;
+    padding: 30px;
     text-align: center;
-    font-size: 38px;
+    font-size: 28px;
 }
 
     .button:hover {
