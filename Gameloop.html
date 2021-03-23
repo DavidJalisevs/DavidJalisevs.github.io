@@ -35,31 +35,33 @@
 </head>
 
 <body>
-	<canvas tabindex="0" id="game" width="1900" height="700" style="border: black 1px solid;">
+	<canvas tabindex="0" id="game" width="1140" height="700" style="border: black 1px solid;">
 		Oops! looks like your browser does not support canvas tag
 	</canvas>
-	<div style = "position:absolute; left:365px; top:735px; background-color:yellow;">
+	<!--  	<div style = "position:absolute; left:365px; top:735px; background-color:yellow;">
 		Background switch.
 	 </div>
 	 <div style = "position:absolute; left:550px; top:735px; background-color:yellow;">
+		
 		Score Update.
+ -->
 	 </div>
 
 	<table>
 		<tbody>
 			<tr>
 				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickUp()" class="button yellow round">Y</button></td>
+				<td><button onmousedown="buttonOnClickFast()" class="button yellow round">Qucik attack</button></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
-				<td><button onmousedown="buttonOnClickLeft()" class="button blue round">X</button></td>
+				<td><button onmousedown="buttonOnClickDefense()" class="button blue round">Defence</button></td>
 				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickRight()" class="button red round">B</button></td>
+				<td><button onmousedown="buttonOnClickStrong()" class="button red round">Strong attack</button></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickDown()" class="button green round">A</button></td>
+				<td><button onmousedown="buttonOnClickHeal()" class="button green round">Heal</button></td>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
@@ -68,22 +70,16 @@
 				<td>&nbsp;</td>
 			  </tr>
 			  <tr>
-		
+	
 			
 		<td colspan="3" align="center">
 			<label class="switch">
 			<input id="active" onclick="backgroundChange()" type="checkbox">
 			<span class="toggle"></span>
 			</label>
-		
-			
-		  <td colspan="6" align="center">
-			<label class="switch">
-			  <input id="scoreUpdate" onclick="updateScore()" type="checkbox">
-			  <span class="toggle"></span>
-			</label>
 		  </td>
 		</tr>
+	
 	  </tbody>
 	</table>
 

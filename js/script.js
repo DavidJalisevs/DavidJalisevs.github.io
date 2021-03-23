@@ -21,22 +21,6 @@ function GameObject(name, img, health) {
 }
 
 function onPageLoad() {
-    // Using JSON and Local Storage for
-    // GameState Management
-
-  //  readJSONFromURL('./data/level.json', function (err, data) {
-    //  if (err != null) {
-    //    console.error(err);
-    //  } else {
-       // textSnakeHP = data.snakeHP;
-      //  console.log(textSnakeHP);
-      //  textHumanHP = data.humanHP;
-      //  console.log(textHumanHP);
-     //   textBottleHP = data.Bottle;
-      //  console.log(textBottleHP);
-    //  }
-  //  });
-  
     // Reading File from a Server
   
     var xmlhttp = new XMLHttpRequest();
@@ -98,15 +82,42 @@ function drawHealthbar() {
     context.fillRect(gameobjects[1].x + 50,gameobjects[1].y + 210, fillVal * width, height);
   }
 
+function drawHealthbarPlayer() {
+    var width = 100;
+    var height = 20;
+    var max = 100;
+    var val = gameobjects[0].health;
+  
+    // Draw the background
+    context.fillStyle = "#000000";
+    //context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillRect(gameobjects[0].x + 50,gameobjects[0].y + 210, width, height);
+  
+    // Draw the fill
+    context.fillStyle = "#00FF00";
+    if(gameobjects[0].health < 50 )
+    {
+        context.fillStyle = "#FFFF00";
+    }
+    if(gameobjects[0].health < 25 )
+    {
+        context.fillStyle = "#FF0000";
+    }
+
+    var fillVal = Math.min(Math.max(val / max, 0), 1);
+    context.fillRect(gameobjects[0].x + 50,gameobjects[0].y + 210, fillVal * width, height);
+  }
+  
+
 
 // Sprite for player 
 var sprite = new Image();
-sprite.src = "./img/snake6.png"; // 
+sprite.src = "./img/lizard.png"; // 
 
 
 // Sprite for enemt
 var enemySprite = new Image();
-enemySprite.src = "./img/11.png"; // 
+enemySprite.src = "./img/2.png"; // 
 
 var projectileSprite = new Image();
 projectileSprite.src = "./img/throw.png";
@@ -142,9 +153,9 @@ var gameobjects = [player, enemy, projectile];
 
 gameobjects[0].x =100;//player
 gameobjects[0].y =400;
-gameobjects[0].health = textSnakeHP;
+gameobjects[0].health = 100;
 
-gameobjects[1].x =1600;//npc
+gameobjects[1].x =800;//npc
 gameobjects[1].y =400;
 gameobjects[1].health = 100;
 
@@ -215,9 +226,12 @@ function animate() {
         context.drawImage(backGround, 0,  0, 1920, 1200);
         backgroundChange();
         drawHealthbar();
+        drawHealthbarPlayer();
 
-
-        context.drawImage(gameobjects[0].img, (gameobjects[0].img.width / frames) * currentFrame, 0, 210, 50,  gameobjects[0].x,  gameobjects[0].y, 200, 200);
+        if(gameobjects[0].health >= 1)
+        {
+        context.drawImage(gameobjects[0].img, (gameobjects[0].img.width / 7) * currentFrame, 0, 90, 90,  gameobjects[0].x,  gameobjects[0].y, 200, 200);
+        }
         if(gameobjects[1].health >= 1)
         {
         context.drawImage(gameobjects[1].img, (gameobjects[1].img.width / 7) * currentFrame, 0, 90, 90, gameobjects[1].x,  gameobjects[1].y, 200, 200);
@@ -264,32 +278,11 @@ function update() {
             console.log(gameobjects[2].name + " at X: " + gameobjects[2].x + "  at Y: "  + gameobjects[2].y);
         } 
     }
-        collision();
+        dies();
         drawHealthbar();
         backgroundChange();
 
-  if(gameobjects[0].x > gameobjects[1].x)
-  {
-    gameobjects[1].x +=1;
-  }
 
-
-  if(gameobjects[0].x < gameobjects[1].x)
-  {
-    gameobjects[1].x -=1;
-  }
-
-
-  if(gameobjects[0].y > gameobjects[1].y)
-  {
-    gameobjects[1].y +=1;
-  }
-
-
-  if(gameobjects[0].y < gameobjects[1].y)
-  {
-    gameobjects[1].y -=1;
-  }
 }
 
 
@@ -328,38 +321,27 @@ function draw() {
     }
 }
 
-function collision()
+function dies()
 {
-    if(gameobjects[1].health > 0 )
+    if(gameobjects[1].health <= 0 )
     {
-     
-        var collisionX = gameobjects[1].x - gameobjects[0].x;
-        var collisionY = gameobjects[1].y - gameobjects[0].y;
 
-        if(gameobjects[1].health >=1)
-        {
-            if(gameobjects[0].x === gameobjects[1].x && gameobjects[0].y === gameobjects[1].y)
-            //if(collisionX < 60 && collisionY <100)
-            {
+        //if(gameobjects[0].x === gameobjects[1].x && gameobjects[0].y === gameobjects[1].y)
+        //if(collisionX < 60 && collisionY <100)
+       // {
+      //  
+        //}
 
-                if(gameobjects[1].health >=1) // here you kill NPC
-                {
-                    gameobjects[1].health = gameobjects[1].health - 1;
-                    console.log("MINUS 1 HP NPC");
-                    attackSound.volume = 0.1;
-                    attackSound.play();
-                    updateScore();
-                }
-            
-
-                console.log("collided");
-            }
-        }
+         gameobjects[1].x =16000;//npc
+         gameobjects[1].y =4000;
+        
     }
-    else
+
+    if(gameobjects[0].health <= 0 )
     {
-        gameobjects[1].x =16000;//npc
-        gameobjects[1].y =4000;
+         gameobjects[0].x =16000;//npc
+         gameobjects[0].y =40000;
+        
     }
 }
 
@@ -377,30 +359,141 @@ function updateScore()
     }
 }
 
-
-
-
- function buttonOnClickRight()
+ function buttonOnClickStrong()
 {
-                // gamerInput = new GamerInput("Right");
-   gameobjects[0].x +=100;
+    if(gameobjects[1].health >0)
+    {
+    var random = 0;
+    // gamerInput = new GamerInput("Right");
+    gameobjects[1].health = gameobjects[1].health - 15;
+    attackSound.volume = 0.1;
+    attackSound.play();
+    updateScore();
+    console.log("MINUS 15 HP NPC");
+
+
+    random = Math.floor(Math.random() * 10)
+    if(random >= 0 && random <=5)
+    {
+        enemyFastAttack();
+    }
+    else if(random > 6 && random <=7)
+    {
+        enemyStrongAttack();
+    }
+    else if(random > 7 && random <=9 && gameobjects[1].health < 70)
+    {
+        enemyHealAttack();
+    }
+    else{
+        random = Math.floor(Math.random() * 10)
+
+        if(random >= 0 && random <=7)
+        {
+            enemyFastAttack();
+        }
+        if(random >7 && random <=9)
+        {
+            enemyStrongAttack();
+        }
+    }
+    random = 0;
+}
+else
+{
+    console.log("SPIDER IS DEAD");
+
 }
 
-function buttonOnClickUp()
+}
+
+function buttonOnClickFast()
 {
-gameobjects[0].y -= 100;
+    if(gameobjects[1].health >0)
+    {
+    var random = 0;
+    // gamerInput = new GamerInput("Right");
+    gameobjects[1].health = gameobjects[1].health - 5;
+    attackSound.volume = 0.1;
+    attackSound.play();
+    updateScore();
+    console.log("MINUS 15 HP NPC");
+
+
+    random = Math.floor(Math.random() * 10)
+    if(random >= 0 && random <=5)
+    {
+        enemyFastAttack();
+    }
+    else if(random > 6 && random <=7)
+    {
+        enemyStrongAttack();
+    }
+    else if(random > 7 && random <=9 && gameobjects[1].health < 70)
+    {
+        enemyHealAttack();
+    }
+    else{
+        random = Math.floor(Math.random() * 10)
+
+        if(random >= 0 && random <=7)
+        {
+            enemyFastAttack();
+        }
+        if(random >7 && random <=9)
+        {
+            enemyStrongAttack();
+        }
+    }
+    random = 0;
+}
+else
+{
+    console.log("SPIDER IS DEAD");
 
 }
 
-function buttonOnClickLeft()
-{
-gameobjects[0].x -= 100;
 }
 
-function buttonOnClickDown()
+function buttonOnClickDefense()
 {
-gameobjects[0].y += 100;
+//set up a defense 
+
 }
+
+function buttonOnClickHeal()
+{
+    if( gameobjects[0].health < 90)
+    {
+
+     gameobjects[0].health = gameobjects[0].health + 25;
+        
+    }
+}
+
+
+
+function enemyFastAttack()
+{
+    gameobjects[0].health = gameobjects[0].health - 10;
+    console.log("SPIDER USED FAST ATTACK");
+    console.log(gameobjects[0].health);
+}
+
+function enemyStrongAttack()
+{
+    gameobjects[0].health = gameobjects[0].health - 15;
+    console.log("SPIDER USED STRONG ATTACK");
+    console.log(gameobjects[0].health);
+}
+
+function enemyHealAttack()
+{
+    gameobjects[1].health = gameobjects[1].health + 20;
+    console.log("SPIDER USED Healing");
+}
+
+
 
 function gameloop() 
 {
