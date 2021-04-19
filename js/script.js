@@ -11,6 +11,7 @@ var attackSound;
 var textHumanHP = 0;
 var textSnakeHP;
 var textBottleHP;
+var staminaPoints = 100;
 function GameObject(name, img, health) {
     this.name = name;
     this.img = img;
@@ -55,6 +56,24 @@ function sound(src) {
     this.sound.pause();
   }
 }
+function drawStaminahbar() {
+    var width = 1030;
+    var height = 20;
+    var max = 100;
+    var val = staminaPoints;
+  
+    // Draw the background
+    context.fillStyle = "#000000";
+    //context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillRect(125,10, width, height);
+  
+    // Draw the fill
+    context.fillStyle = "#00FF00";
+
+    var fillVal = Math.min(Math.max(val / max, 0), 1);
+    context.fillRect(125,10, fillVal * width, height);
+  }
+
 
 function drawHealthbar() {
     var width = 100;
@@ -127,7 +146,19 @@ var backGround = new Image();
 backGround.src = "./img/space.jpg";
 
 var backGround2 = new Image();
-backGround2.src ="./img/jugnle.jpg"
+backGround2.src ="./img/jugnle.jpg";
+
+var wonImage = new Image();
+wonImage.src = "./img/won.png";
+
+var lostImage = new Image();
+lostImage.src = "./img/lost.png";
+
+var staminaWordImage = new Image();
+staminaWordImage.src = "./img/stamina.png";
+
+
+
 
 attackSound = new sound("sattack.mp3");
 
@@ -222,22 +253,41 @@ function animate() {
 
    for (i = 0; i < gameobjects.length; i++) 
     {
-
         context.drawImage(backGround, 0,  0, 1920, 1200);
+        
         backgroundChange();
         drawHealthbar();
         drawHealthbarPlayer();
-
-        if(gameobjects[0].health >= 1)
+        drawStaminahbar();
+        if(gameobjects[0].health > 1)
         {
         context.drawImage(gameobjects[0].img, (gameobjects[0].img.width / 7) * currentFrame, 0, 90, 90,  gameobjects[0].x,  gameobjects[0].y, 200, 200);
         }
-        if(gameobjects[1].health >= 1)
+        if(gameobjects[1].health > 1)
         {
         context.drawImage(gameobjects[1].img, (gameobjects[1].img.width / 7) * currentFrame, 0, 90, 90, gameobjects[1].x,  gameobjects[1].y, 200, 200);
         }
 
-        context.drawImage(gameobjects[2].img, gameobjects[2].x,  gameobjects[2].y, 40, 40); 
+        if(gameobjects[1].health <= 0)
+        {
+            context.drawImage(wonImage, 420, 220, 300, 300);
+
+        }
+
+        if(gameobjects[0].health <= 0|| staminaPoints <=1)
+        {
+            context.drawImage(lostImage, 420, 220, 300, 300);
+
+        }
+
+
+
+        context.drawImage(staminaWordImage, 0, 0,120, 40);
+
+
+
+
+
     }
 }
 
@@ -319,6 +369,7 @@ function draw() {
          animate();
         }
     }
+
 }
 
 function dies()
@@ -361,43 +412,47 @@ function updateScore()
 
  function buttonOnClickStrong()
 {
-    if(gameobjects[1].health >0)
+    if(staminaPoints >=13)
     {
-    var random = 0;
-    // gamerInput = new GamerInput("Right");
-    gameobjects[1].health = gameobjects[1].health - 15;
-    attackSound.volume = 0.1;
-    attackSound.play();
-    updateScore();
-    console.log("MINUS 15 HP NPC");
+        if(gameobjects[1].health >0)
+        {
+        var random = 0;
+        // gamerInput = new GamerInput("Right");
+        gameobjects[1].health = gameobjects[1].health - 15;
+        staminaPoints = staminaPoints -13;
+        attackSound.volume = 0.1;
+        attackSound.play();
+        updateScore();
+        console.log("MINUS 15 HP NPC");
 
 
-    random = Math.floor(Math.random() * 10)
-    if(random >= 0 && random <=5)
-    {
-        enemyFastAttack();
-    }
-    else if(random > 6 && random <=7)
-    {
-        enemyStrongAttack();
-    }
-    else if(random > 7 && random <=9 && gameobjects[1].health < 70)
-    {
-        enemyHealAttack();
-    }
-    else{
         random = Math.floor(Math.random() * 10)
-
-        if(random >= 0 && random <=7)
+        if(random >= 0 && random <=5)
         {
             enemyFastAttack();
         }
-        if(random >7 && random <=9)
+        else if(random > 6 && random <=7)
         {
             enemyStrongAttack();
         }
+        else if(random > 7 && random <=9 && gameobjects[1].health < 70)
+        {
+            enemyHealAttack();
+        }
+        else{
+            random = Math.floor(Math.random() * 10)
+
+            if(random >= 0 && random <=7)
+            {
+                enemyFastAttack();
+            }
+            if(random >7 && random <=9)
+            {
+                enemyStrongAttack();
+            }
+        }
+        random = 0;
     }
-    random = 0;
 }
 else
 {
@@ -409,43 +464,47 @@ else
 
 function buttonOnClickFast()
 {
-    if(gameobjects[1].health >0)
+    if(staminaPoints >=1)
     {
-    var random = 0;
-    // gamerInput = new GamerInput("Right");
-    gameobjects[1].health = gameobjects[1].health - 5;
-    attackSound.volume = 0.1;
-    attackSound.play();
-    updateScore();
-    console.log("MINUS 15 HP NPC");
+        if(gameobjects[1].health >0)
+        {
+        var random = 0;
+        // gamerInput = new GamerInput("Right");
+        gameobjects[1].health = gameobjects[1].health - 5;
+        staminaPoints = staminaPoints -5;
+        attackSound.volume = 0.1;
+        attackSound.play();
+        updateScore();
+        console.log("MINUS 15 HP NPC");
 
 
-    random = Math.floor(Math.random() * 10)
-    if(random >= 0 && random <=5)
-    {
-        enemyFastAttack();
-    }
-    else if(random > 6 && random <=7)
-    {
-        enemyStrongAttack();
-    }
-    else if(random > 7 && random <=9 && gameobjects[1].health < 70)
-    {
-        enemyHealAttack();
-    }
-    else{
         random = Math.floor(Math.random() * 10)
-
-        if(random >= 0 && random <=7)
+        if(random >= 0 && random <=5)
         {
             enemyFastAttack();
         }
-        if(random >7 && random <=9)
+        else if(random > 6 && random <=7)
         {
             enemyStrongAttack();
         }
+        else if(random > 7 && random <=9 && gameobjects[1].health < 70)
+        {
+            enemyHealAttack();
+        }
+        else{
+            random = Math.floor(Math.random() * 10)
+
+            if(random >= 0 && random <=7)
+            {
+                enemyFastAttack();
+            }
+            if(random >7 && random <=9)
+            {
+                enemyStrongAttack();
+            }
+        }
+        random = 0;
     }
-    random = 0;
 }
 else
 {
@@ -463,11 +522,14 @@ function buttonOnClickDefense()
 
 function buttonOnClickHeal()
 {
-    if( gameobjects[0].health < 90)
+    if(staminaPoints >=20)
     {
-
-     gameobjects[0].health = gameobjects[0].health + 25;
-        
+        if( gameobjects[0].health < 90)
+        {
+        staminaPoints = staminaPoints - 20;
+        gameobjects[0].health = gameobjects[0].health + 25;
+            
+        }
     }
 }
 

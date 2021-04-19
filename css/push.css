@@ -1,13 +1,25 @@
 /* Button Styling */
 /* version1.1 */
 
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+button.margin-right {
+  margin-right: 20px;
+}
+
 .button {
-    background-color: #000000;
-    border: none;
-    box-shadow: 0 9px#505050;
+    background-color: #1C2833;
+    border:10px solid black;
+    box-shadow: none;
     padding: 30px;
     text-align: center;
-    font-size:35px;
+    font-size:30px;
   }
   
   .button:hover {
@@ -20,7 +32,7 @@
   }
   
   .red {
-    color: #FF0000;
+    color: #F4F6F7;
   }
   
   .green {
@@ -28,11 +40,11 @@
   }
   
   .blue {
-    color: #0000FF;
+    color: #FF0000;
   }
   
   .yellow {
-    color: #FFFF00;
+    color: #FF0000;
   }
   
   .round {

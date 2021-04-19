@@ -34,47 +34,60 @@
 
 </head>
 
-<body>
-	<canvas tabindex="0" id="game" width="1140" height="700" style="border: black 1px solid;">
+<body style="background-color:#2C99A2;">
+
+	<div style = "text-align:center;">
+	<canvas tabindex="0" id="game" width="1140" height="700" style = "background-color:BLACK;">
 		Oops! looks like your browser does not support canvas tag
+	</div>
+		
+
+
 	</canvas>
-	<!--  	<div style = "position:absolute; left:365px; top:735px; background-color:yellow;">
+ 	<div style = "position:absolute; left:260px; top:520px; background-color:white;">
 		Background switch.
 	 </div>
+ 	<div style = "position:absolute; left:10px; top:20px; background-color:white;">
+		Information:.
+	 </div>
+	 <div style = "position:absolute; left:10px; top:40px; background-color:white;">
+		Each action takes away certain amount of stamina !
+	 </div>
+	 <div style = "position:absolute; left:10px; top:60px; background-color:white;">
+		Once you are out of stamin - YOU LOST !
+	 </div>
+	 <div style = "position:absolute; left:10px; top:80px; background-color:white;">
+		Once spider kills you - YOU LOST !
+	 </div>
+	 <div style = "position:absolute; left:10px; top:100px; background-color:white;">
+		Defeeat the spider before you die or run out of stamina !
+	 </div>
+
+	  <!--
 	 <div style = "position:absolute; left:550px; top:735px; background-color:yellow;">
 		
 		Score Update.
- -->
-	 </div>
 
+	 </div>
+ -->
 	<table>
 		<tbody>
-			<tr>
-				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickFast()" class="button yellow round">Qucik attack</button></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td><button onmousedown="buttonOnClickDefense()" class="button blue round">Defence</button></td>
-				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickStrong()" class="button red round">Strong attack</button></td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td><button onmousedown="buttonOnClickHeal()" class="button green round">Heal</button></td>
-				<td>&nbsp;</td>
-			</tr>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-			  </tr>
-			  <tr>
-	
+			<div class="flex-parent jc-center">
+
+				<button onmousedown="buttonOnClickFast()" id = "buttomFast"class="button yellow square" style="margin:auto;display:block">Qucik attack</button></td>
+
+				<button onmousedown="buttonOnClickStrong()" class="button blue square" style="margin:auto;display:block">Strong attack</button></td>
+
+				<button onmousedown="buttonOnClickDefense()" class="button red square" style="margin:auto;display:block">Defence</button></td>
+
+				<button onmousedown="buttonOnClickHeal()" class="button green square" style="margin:auto;display:block">Heal</button></td>
+
+			</div>
 			
+
 		<td colspan="3" align="center">
 			<label class="switch">
-			<input id="active" onclick="backgroundChange()" type="checkbox">
+			<input id="active" onclick="backgroundChange()" type="checkbox" style="margin:auto;display:block">
 			<span class="toggle"></span>
 			</label>
 		  </td>
