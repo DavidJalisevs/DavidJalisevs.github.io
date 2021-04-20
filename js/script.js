@@ -12,6 +12,11 @@ var textHumanHP = 0;
 var textSnakeHP;
 var textBottleHP;
 var staminaPoints = 100;
+var initialCountDown = new Date().getTime();
+var currentTime;
+var isTimeCaptured = false;
+var playerTurnAttack = true;
+var enemyTurnAttack = false;
 function GameObject(name, img, health) {
     this.name = name;
     this.img = img;
@@ -280,14 +285,20 @@ function animate() {
 
         }
 
-
-
         context.drawImage(staminaWordImage, 0, 0,120, 40);
 
 
 
-
-
+    }
+    if(enemyTurnAttack == true && gameobjects[1].health > 0)
+    {
+        console.log("numbers working1")
+        context.fillStyle = "#FFFFFF";
+        context.textAlign = "center";
+        context.font = "40px Arial";
+        context.fillText("ENEMYS TURN", 590,300 );
+        context.fillText(Math.trunc(3 - ((currentTime - initialCountDown) / 1000)), 590, 350);
+        console.log("numbers working2")
     }
 }
 
@@ -331,8 +342,10 @@ function update() {
         dies();
         drawHealthbar();
         backgroundChange();
+        enemyStrongAttack();
+        enemyFastAttack();
 
-
+  
 }
 
 
@@ -367,6 +380,7 @@ function draw() {
          console.log("Image :" + gameobjects[i].img);
 
          animate();
+
         }
     }
 
@@ -412,7 +426,7 @@ function updateScore()
 
  function buttonOnClickStrong()
 {
-    if(staminaPoints >=13)
+    if(staminaPoints >=13 && playerTurnAttack == true)
     {
         if(gameobjects[1].health >0)
         {
@@ -424,8 +438,8 @@ function updateScore()
         attackSound.play();
         updateScore();
         console.log("MINUS 15 HP NPC");
-
-
+        playerTurnAttack = false;
+        enemyTurnAttack = true;
         random = Math.floor(Math.random() * 10)
         if(random >= 0 && random <=5)
         {
@@ -454,17 +468,13 @@ function updateScore()
         random = 0;
     }
 }
-else
-{
-    console.log("SPIDER IS DEAD");
 
-}
 
 }
 
 function buttonOnClickFast()
 {
-    if(staminaPoints >=1)
+    if(staminaPoints >=1 && playerTurnAttack == true)
     {
         if(gameobjects[1].health >0)
         {
@@ -476,6 +486,8 @@ function buttonOnClickFast()
         attackSound.play();
         updateScore();
         console.log("MINUS 15 HP NPC");
+        playerTurnAttack = false;
+        enemyTurnAttack = true;
 
 
         random = Math.floor(Math.random() * 10)
@@ -504,13 +516,8 @@ function buttonOnClickFast()
             }
         }
         random = 0;
+        }
     }
-}
-else
-{
-    console.log("SPIDER IS DEAD");
-
-}
 
 }
 
@@ -522,10 +529,13 @@ function buttonOnClickDefense()
 
 function buttonOnClickHeal()
 {
-    if(staminaPoints >=20)
+    if(staminaPoints >=20 && playerTurnAttack == true)
     {
         if( gameobjects[0].health < 90)
         {
+        playerTurnAttack = false;
+        enemyTurnAttack = true;
+
         staminaPoints = staminaPoints - 20;
         gameobjects[0].health = gameobjects[0].health + 25;
             
@@ -537,22 +547,92 @@ function buttonOnClickHeal()
 
 function enemyFastAttack()
 {
-    gameobjects[0].health = gameobjects[0].health - 10;
-    console.log("SPIDER USED FAST ATTACK");
-    console.log(gameobjects[0].health);
+    if(enemyTurnAttack == true && gameobjects[1].health >0)
+    {
+        console.log("1st part");
+
+        if(isTimeCaptured == false)
+        {
+            initialCountDown = new Date().getTime();
+            isTimeCaptured = true;
+            console.log("2nd part");
+
+        }
+
+        currentTime = new Date().getTime();
+        console.log("3rd part");
+
+        
+        if(currentTime-initialCountDown >=2000)
+        {
+            gameobjects[0].health = gameobjects[0].health - 10;
+            console.log("SPIDER USED FAST ATTACK");
+            console.log(gameobjects[0].health);
+            playerTurnAttack = true;
+            enemyTurnAttack = false;
+            initialCountDown = currentTime;
+            isTimeCaptured = false;
+        }
+    }
+    
 }
 
 function enemyStrongAttack()
 {
-    gameobjects[0].health = gameobjects[0].health - 15;
-    console.log("SPIDER USED STRONG ATTACK");
-    console.log(gameobjects[0].health);
+    if(enemyTurnAttack == true && gameobjects[1].health >0)
+    {
+        console.log("1st part");
+
+        if(isTimeCaptured == false)
+        {
+            initialCountDown = new Date().getTime();
+            isTimeCaptured = true;
+            console.log("2nd part");
+
+        }
+
+        currentTime = new Date().getTime();
+        console.log("3rd part");
+        //console.log("time = " + (current-initial));
+
+        if(currentTime-initialCountDown >=2000)
+        {
+            gameobjects[0].health = gameobjects[0].health - 15;
+            console.log("SPIDER USED STRONG ATTACK");
+            console.log(gameobjects[0].health);
+            playerTurnAttack = true;
+            enemyTurnAttack = false;
+            initialCountDown = currentTime;
+            isTimeCaptured = false;
+
+        }
+    }
 }
 
 function enemyHealAttack()
 {
-    gameobjects[1].health = gameobjects[1].health + 20;
-    console.log("SPIDER USED Healing");
+    if(enemyTurnAttack == true && gameobjects[1].health >0)
+    {
+        if(isTimeCaptured == false)
+        {
+            initialCountDown = new Date().getTime();
+            isTimeCaptured = true;
+        }
+
+        currentTime = new Date().getTime();
+
+        if(currentTime-initialCountDown >=2000)
+        {
+            gameobjects[1].health = gameobjects[1].health + 20;
+            console.log("SPIDER USED Healing");
+            playerTurnAttack = true;
+            enemyTurnAttack = false;
+            initialCountDown = currentTime;
+            isTimeCaptured = false;
+
+        }
+    }
+
 }
 
 
