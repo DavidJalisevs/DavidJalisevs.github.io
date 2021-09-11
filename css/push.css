@@ -154,3 +154,15 @@ button.margin-right {
     /* CSS3 */
     appearance: none;
   }
+
+  .buttonn {
+    background-color: blue;
+    width: 200px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid yellow;
+    color: white;
+    text-align: center;
+  }
+

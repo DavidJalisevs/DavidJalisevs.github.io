@@ -17,23 +17,115 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-status-bar-style" content="black">
 	<meta name="mobile-web-app-title" content="davidjal PWA (Progressive Web Application)">
+
 </head>
 <body>
 
-	<article>
-		<header>
-			<h1>Welcome to David`s Page</h1>
-			<h1>Here you will be able to find link to my github repo with all projects</h1>
-		</header>
-	
-	</article>
+	<body style="background-color:#202124;">
 
+		<div style = "text-align:center;">
+		<canvas tabindex="0" id="game" width="1640" height="50" style = "background-color:#393a40;">
+			Oops! looks like your browser does not support canvas tag
+		</div>
+			
+	
+	
+		</canvas>
+		 <div style = "position:absolute;font-size:30px; left:140px; top:10px;color:#bbbdc9; background-color:#393a40;">
+			Welcome to my page, my name is David Jalisevs.I am a programming and games development student.
+		 </div>
+		 <div style = "position:absolute; font-size:30px; left:140px; top:90px;color:#bbbdc9; ">
+			Here you will be able to find link to my github repo with all projects.
+		 </div>
+		 <div style = "position:absolute; font-size:30px; left:1570px; top:400px;color:#bbbdc9; ">
+			This is me :)
+		 </div>
+		 <div style = "position:absolute; font-size:30px; left:140px; top:150px;color:#bbbdc9;">
+			GITHUB repo link with all my projects(video of the project in each folder).
+		 </div>
+		 <div style = "position:absolute; font-size:30px; left:300px; top:200px;color:#bbbdc9;">
+			Click.
+		 </div>
+		 <div style = "position:absolute; font-size:30px; left:140px; top:600px;color:#bbbdc9;">
+			Ooor you can play a quick web game if you click button below.
+		 </div>
+	
+		 <div style = "position:absolute; font-size:30px; left:1400px; top:600px;color:#bbbdc9;">
+			About me:
+		 </div>
+	
+		 <p style ="position:absolute; font-size:25px; left:1400px; top:630px;color:#bbbdc9;">
+			I am 22 years old student at IT Carlow in Ireland. I do study science in games development and programming.
+			I like this course and what we are doing a lot.
+			</p>
+		  <!--
+		 <div style = "position:absolute; left:550px; top:735px; background-color:yellow;">
+			
+			Score Update.
+	
+		 </div>
+	 -->
+
+	
+	
+
+	<style>
+		
+	.img { 
+	width:20%;
+	height:20%;
+	top:6%;
+	left:72.5%;
+	position:absolute; 
+	z-index: 1;
+	} 
+
+	.imgarrow { 
+	width:10%;
+	height:20%;
+	top:249px;
+	left:1400px;
+	position:absolute; 
+	z-index: 1;
+	} 
+
+
+	.anybutton {
+    top:69%;
+    left:7.3%;
+    width:100px;
+    height:40px;
+    position: absolute;
+    z-index: 2;
+    background: #bbbdc9; 
+    }
+	.anybuttonGit {
+    top:21%;
+    left:7.3%;
+    width:150px;
+    height:40px;
+    position: absolute;
+    z-index: 2;
+    background: #bbbdc9; 
+    }
+    </style>
+	<img src="./img/Me.png" class="img" id="img" />
+	<img src="./img/arrow.png" class="imgarrow" id="imgarrow" />
 
 
 	<form action="./Gameloop.html" method="GET" target="_blank">
 
-	
-		<button type="submit">Send me to the game</button>
+		<div class="mycenter" id="">
+			<input type="submit" class="anybutton" id="myab" value="QUICK GAME" />
+		 </div>
+
+	</form>
+
+	<form action="./Gameloop.html" method="GET" target="_blank">
+
+		<div class="mycenter" id="">
+			<input type="submit" class="anybuttonGit" id="myab" value="TO THE GITHUB" />
+		 </div>
 
 	</form>
 
